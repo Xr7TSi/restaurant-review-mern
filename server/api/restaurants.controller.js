@@ -2,10 +2,13 @@ import RestaurantsDAO from "../dao/restaurantsDAO.js"
 
 export default class RestaurantsController {
   static async apiGetRestaurants(req, res, next) {
+    //   if the query returns restaurantsPerPage, convert it into an integer.  If not return, default to 20.
     const restaurantsPerPage = req.query.restaurantsPerPage ? parseInt(req.query.restaurantsPerPage, 10) : 20
+    //   if the query returns page, convert it into an integer.  If not, page number is 0.
     const page = req.query.page ? parseInt(req.query.page, 10) : 0
 
     let filters = {}
+    // if query returns cuisine, filters.cuisine gets the result of the query.
     if (req.query.cuisine) {
       filters.cuisine = req.query.cuisine
     } else if (req.query.zipcode) {
