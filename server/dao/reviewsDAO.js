@@ -1,5 +1,5 @@
 import mongodb from "mongodb"
-const ObjectId = mongodb.ObjectId
+const ObjectId = mongodb.ObjectID
 
 let reviews
 
@@ -17,11 +17,13 @@ export default class ReviewsDAO {
 
   static async addReview(restaurantId, user, review, date) {
     try {
-      const reviewDoc = { name: user.name,
+      const reviewDoc = { 
+          name: user.name,
           user_id: user._id,
           date: date,
           text: review,
           restaurant_id: ObjectId(restaurantId), }
+    
 
       return await reviews.insertOne(reviewDoc)
     } catch (e) {
@@ -29,6 +31,8 @@ export default class ReviewsDAO {
       return { error: e }
     }
   }
+
+
 
   static async updateReview(reviewId, userId, text, date) {
     try {

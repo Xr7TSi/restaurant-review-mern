@@ -18,7 +18,7 @@ export default class ReviewsController {
         review,
         date,
       )
-      res.json({ status: "success" })
+      res.json({ status: "success at apiPostReview" })
     } catch (error) {
       res.status(500).json({ error: error.message + "Error at apiPostReview" })
     }
