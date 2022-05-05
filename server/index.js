@@ -8,6 +8,7 @@ const MongoClient = mongodb.MongoClient;
 
 const port = process.env.PORT || 8000;
 
+// connect to the database
 MongoClient.connect(process.env.RESTREVIEWS_DB_URI, {
   wtimeoutMS: 2500,
   useNewUrlParser: true,
@@ -17,6 +18,7 @@ MongoClient.connect(process.env.RESTREVIEWS_DB_URI, {
     process.exit(1);
 })
 .then(async client => {
+    //useRestaurantsDAO to establish connection to the restaurants collection
     await RestaurantsDAO.injectDB(client);
     app.listen(port, () =>  {
         console.log(`Listening on port ${port}`);

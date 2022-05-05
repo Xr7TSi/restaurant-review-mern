@@ -17,7 +17,9 @@ export default class RestaurantsController {
       filters.name = req.query.name
     }
 
+    //restaurantsList and totalNumRestaurants are declared in restaurantsDAO
     const { restaurantsList, totalNumRestaurants } = await RestaurantsDAO.getRestaurants({
+      // these variables, declared above, are passed into the getRestaurants function and are used to create restaurantsList and totalNumRestaurants
       filters,
       page,
       restaurantsPerPage,
@@ -32,28 +34,28 @@ export default class RestaurantsController {
     }
     res.json(response)
   }
-  static async apiGetRestaurantById(req, res, next) {
-    try {
-      let id = req.params.id || {}
-      let restaurant = await RestaurantsDAO.getRestaurantByID(id)
-      if (!restaurant) {
-        res.status(404).json({ error: "Not found" })
-        return
-      }
-      res.json(restaurant)
-    } catch (e) {
-      console.log(`api, ${e}`)
-      res.status(500).json({ error: e })
-    }
-  }
+//   static async apiGetRestaurantById(req, res, next) {
+//     try {
+//       let id = req.params.id || {}
+//       let restaurant = await RestaurantsDAO.getRestaurantByID(id)
+//       if (!restaurant) {
+//         res.status(404).json({ error: "Not found" })
+//         return
+//       }
+//       res.json(restaurant)
+//     } catch (e) {
+//       console.log(`api, ${e}`)
+//       res.status(500).json({ error: e })
+//     }
+//   }
 
-  static async apiGetRestaurantCuisines(req, res, next) {
-    try {
-      let cuisines = await RestaurantsDAO.getCuisines()
-      res.json(cuisines)
-    } catch (e) {
-      console.log(`api, ${e}`)
-      res.status(500).json({ error: e })
-    }
-  }
+//   static async apiGetRestaurantCuisines(req, res, next) {
+//     try {
+//       let cuisines = await RestaurantsDAO.getCuisines()
+//       res.json(cuisines)
+//     } catch (e) {
+//       console.log(`api, ${e}`)
+//       res.status(500).json({ error: e })
+//     }
+//   }
 }
