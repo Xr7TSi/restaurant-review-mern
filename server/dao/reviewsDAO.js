@@ -1,5 +1,9 @@
+// DAO = Data Access Object
+// DAO Allows code to access data in the database
+
+
 import mongodb from "mongodb"
-const ObjectId = mongodb.ObjectID
+const ObjectId = mongodb.ObjectId
 
 let reviews
 
